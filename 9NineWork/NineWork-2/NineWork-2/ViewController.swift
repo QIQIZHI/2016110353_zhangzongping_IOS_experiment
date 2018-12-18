@@ -1,0 +1,59 @@
+//
+//  ViewController.swift
+//  实验九-2模拟
+//
+//  Created by zhangzongping on 2018/11/24.
+//  Copyright © 2018年 zongpingzhang. All rights reserved.
+//
+
+import UIKit
+
+class ViewController: UIViewController {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view, typically from a nib.
+    }
+    @IBAction func actionSheet(_ sender: Any) {
+        let alert = UIAlertController(title:"action sheet",message:"this is an action sheet",preferredStyle:.actionSheet)
+        alert.addAction(UIAlertAction(title:"RED",style:.default,handler:{(action) in print("ok clicked")
+            self.view.backgroundColor = UIColor.red
+        }))
+        alert.addAction(UIAlertAction(title:"Green",style:.destructive,handler:{(action) in
+                print("destructive clicked")
+            self.view.backgroundColor = UIColor.green
+        }))
+        alert.addAction(UIAlertAction(title:"White",style:.cancel,handler:{(action) in
+            print("cancel clicked")
+            self.view.backgroundColor = UIColor.white
+        }))
+        present(alert,animated:true,completion:nil)
+    }
+    @IBAction func login(_ sender: Any) {
+        let alert = UIAlertController(title:"Login",message:"Please input your personal information",preferredStyle:.alert)
+        alert.addAction(UIAlertAction(title:"Login",style:.default,handler:{(action) in
+            if let userNameTextFiled = alert.textFields?.first,let passwordTextField = alert.textFields?.last{
+                print("username:\(userNameTextFiled.text!) password:\(passwordTextField.text!)")
+            }
+        }))
+        alert.addAction(UIAlertAction(title:"Cancel",style:.cancel,handler:{(action) in
+            
+        }))
+        alert.addTextField{(textField) in
+            textField.placeholder = "your user name?"
+        }
+        alert.addTextField { (textField) in
+            textField.placeholder = "your password?"
+            textField.isSecureTextEntry = true
+        }
+        present(alert,animated:true,completion:nil)
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+
+
+}
+
